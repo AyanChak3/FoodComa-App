@@ -1,6 +1,8 @@
 const express = require('express');
-const { getCartById } = require('../controllers/cartController');
+const { getCartByUser } = require('../controllers/cartController');
+const { isLoggedIn } = require('../validation/authValidator');
+
 const cartRouter = express.Router();
 
-cartRouter.get('/:id',getCartById)
+cartRouter.get('/',isLoggedIn ,getCartByUser)//show the cart of those user who are logged In
 module.exports = cartRouter;
