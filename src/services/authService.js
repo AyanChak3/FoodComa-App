@@ -14,10 +14,11 @@ async function loginUser(authDetails){ //means email and password
     const isPasswordValidated = await bcrypt.compare(plainPassword,user.password)
 
     if(!isPasswordValidated){
-        throw { message : "Invalid password !! Please try again",statusCode : 404}
+        throw { message : "Invalid password !! Please try again",statusCode : 401}
     }
+    const userRole = user.role?user.role : "USER";
     //3. If the password is validated, create a token and return it
-    const token = jwt.sign({email : user.email, id : user.id},JWT_SECRET,
+    const token = jwt.sign({email : user.email, id : user.id,role : userRole},JWT_SECRET,
         {expiresIn : JWT_EXPIRY}
     )//password is not stored as payload as it might be decoded and it might be exposed
     return token;
