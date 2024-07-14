@@ -37,7 +37,7 @@ function isAdmin(req,res,next){
     //Because we will call isAdmin after isLoggedIn thats why we will receive the user details
     const loggedInUser = req.user;//loggedIn user email and id comes here
     console.log(loggedInUser)
-    if(loggedInUser.role==='ADMIN'){
+    if(loggedInUser.role === 'ADMIN'){
         console.log("User is an admin")
         next();
     }else{
