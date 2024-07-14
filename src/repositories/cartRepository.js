@@ -26,7 +26,6 @@ async function getCartByUserId(userId){
             user : userId
         }).populate('items.product')
         return cart;
-
     }catch(error){
         console.log(error);
         throw new InternalServerError();
