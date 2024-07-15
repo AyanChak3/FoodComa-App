@@ -29,13 +29,7 @@ app.get('/ping',isLoggedIn,(req,res)=>{
     console.log(req.cookies)
     return res.json({message : "pong"})
 })
-app.post('/photo',uploader.single('incomingFile'),async (req,res)=>{
-    console.log(req.file)
-    const result = await cloudinary.uploader.upload(req.file.path)
-    console.log("Result from cloudinary",result)
-    await fs.unlink(req.file.path)
-    return res.json({message : "ok"})
-})
+
 app.listen(ServerConfig.PORT,async()=>{
     await connectDB();
     console.log(`Server started at port ${ServerConfig.PORT}...`)
