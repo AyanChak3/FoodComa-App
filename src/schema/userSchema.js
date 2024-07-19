@@ -11,7 +11,6 @@ const userSchema = new mongoose.Schema({
     },
     lastName : {
         type : String,
-        required : [true,"last Name is required"],
         minlength : [5,"last Name must be atleast 5 character long"],
         lowercase : true,
         trim : true, //if user gives extra spaces then it will automatically remove it

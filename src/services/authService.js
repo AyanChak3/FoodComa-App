@@ -21,7 +21,10 @@ async function loginUser(authDetails){ //means email and password
     const token = jwt.sign({email : user.email, id : user.id, role : userRole},JWT_SECRET,
         {expiresIn : JWT_EXPIRY}
     )//password is not stored as payload as it might be decoded and it might be exposed
-    return token;
+    return {token,userRole,userData : {
+        email : user.email,
+        firstName : user.firstName,
+    }};
 }
 module.exports = {
     loginUser

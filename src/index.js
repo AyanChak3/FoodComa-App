@@ -1,5 +1,6 @@
 const express = require('express');
 const cookieParser = require('cookie-parser')
+const cors = require('cors')
 const ServerConfig = require('./config/serverConfig')
 const connectDB = require('./config/dbConfig');
 const userRouter = require('./routes/userRoute');
@@ -8,6 +9,10 @@ const authRouter = require('./routes/authRoute');
 const productRouter = require('./routes/productRoute');
 const orderRouter = require('./routes/orderRoute');
 const app = express();
+app.use(cors({
+    origin : ServerConfig.FRONTEND_URL,//allow server to accept requests from different origins
+    credentials : true,//allow session cookie from browser to pass through
+}))
 app.use(cookieParser())
 app.use(express.json())
 app.use(express.text())
